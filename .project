@@ -1,0 +1,29 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.8.4
+Title=LX-Pos
+Startup=Start
+Icon=Icones/caisse3.png
+Version=1.4.7
+Component=gb.image
+Component=gb.qt4
+Component=gb.form
+Component=gb.compress
+Component=gb.db
+Component=gb.desktop.x11
+Component=gb.desktop
+Component=gb.form.dialog
+Component=gb.settings
+Component=gb.form.mdi
+Component=gb.net
+Component=gb.pcre
+Component=gb.qt4.ext
+Component=gb.sdl.sound
+Description="Caisse enregistreuse autonome"
+Authors="Jacky TRIPOTEAU"
+TabSize=2
+Language=fr
+SourcePath=/home/jack/Mon_site_Dev/Mon_site
+Maintainer=Jacky Tripoteau
+Address=jscops@wanadoo.fr
+License=General Public Licence
+Packager=1

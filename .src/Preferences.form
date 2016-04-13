@@ -1,0 +1,269 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,94,100)
+  Border = False
+  { TabStrip1 TabStrip
+    MoveScaled(0,0,94,93)
+    Count = 3
+    Index = 0
+    Text = ("Environnement")
+    { Admin CheckBox
+      MoveScaled(1,0,29,4)
+      Visible = False
+      Font = Font["Serif,-1"]
+      ToolTip = ("Si vous activez ce bouton, n'oubliez pas de déclarer un(e) caissier(e) en administrateur.")
+      Text = Shortcut(("Gestion de l'administrateur"), "G")
+    }
+    { Frame1 Frame
+      MoveScaled(15,78.5714,60,10)
+      Font = Font["Serif,-1"]
+      Text = ("Chèques")
+      { TextLabel1 TextLabel
+        MoveScaled(2,2,8,3)
+        Text = ("Ordre")
+      }
+      { Ordre TextBox
+        MoveScaled(12,2,46,3.4286)
+        Font = Font["Serif,-1"]
+      }
+      { TextLabel2 TextLabel
+        MoveScaled(2,6,9,3)
+        Text = ("Lieu")
+      }
+      { Lieu TextBox
+        MoveScaled(12,6,46,3.4286)
+        Font = Font["Serif,-1"]
+      }
+    }
+    { Admin2 CheckBox
+      MoveScaled(1,4,45,4)
+      Visible = False
+      Font = Font["Serif,-1"]
+      ToolTip = ("Si vous activez ce bouton, il faudra saisir le mot de passe administrateur pour acceder à ce menu des préfèrences.")
+      Text = Shortcut(("Mot de passe pour acceder aux préfèrences"), "M")
+    }
+    { Frame2 Frame
+      MoveScaled(15,70,60,7)
+      Font = Font["Serif,-1"]
+      Text = ("Sélection base de travail")
+      { Label6 Label
+        MoveScaled(2,3,10,3)
+        Text = ("Base")
+      }
+      { Nbase ComboBox
+        MoveScaled(12,3,25,3)
+        Font = Font["Serif,-1"]
+        Background = &HF0F1C7&
+      }
+    }
+    { Qt1 CheckBox
+      MoveScaled(1,8,47,4)
+      Font = Font["Serif,-1"]
+      ToolTip = ("Si la zone est cochée, la lecture d'un code barre donnera \nune quantité égale à 1 par défaut. \nLa validation sera automatique.")
+      Text = Shortcut(("Qté = 1 par défaut"), "1")
+    }
+    { Son CheckBox
+      MoveScaled(48,0,23.1429,4)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous souhaitez un son pendant les messages d'alerte..")
+      Text = Shortcut(("Gestion du son"), "s")
+    }
+    { Balance CheckBox
+      MoveScaled(48,8,45,4)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous avez une balance électronique connectée à la caisse.")
+      Text = ("Gestion de la balance électronique")
+    }
+    { Label1 Label
+      MoveScaled(48,21,33,6)
+      Font = Font["Serif,-1"]
+      Text = ("Nombre de Bl & facture\nsi imprimante par défaut")
+    }
+    { Nbf ComboBox
+      MoveScaled(82,22,8,4)
+      Font = Font["Serif,-1"]
+      List = [("1"), ("2"), ("3"), ("4"), ("5"), ("6"), ("7"), ("8"), ("9")]
+    }
+    { ChoixImp CheckBox
+      MoveScaled(1,12,44,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous souhaitez avoir la possibilité de ne pas imprimer le ticket .")
+      Text = ("Choix impression du ticket")
+      Value = CheckBox.True
+    }
+    { HistoCli CheckBox
+      MoveScaled(48,4,44,4)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous souhaitez conserver les coordonnées des clients divers caisses. Cette fonction est utilisée lors de l'impression des facturettes.")
+      Text = ("Archivage des clients facturettes.")
+    }
+    { Mdp2 TextBox
+      MoveScaled(31,0.5714,16,3)
+      Visible = False
+      Font = Font["Serif,-1"]
+      ToolTip = ("Saisir mot de passe administrateur .")
+      Alignment = Align.Center
+      Password = True
+    }
+    { ChoixImpn CheckBox
+      MoveScaled(1,20,44,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous ne souhaitez  pas saisir le nom du client lors d'un réglement par chèque.")
+      Text = ("Choix saisie nom des chèques")
+    }
+    { ChoixImpc CheckBox
+      MoveScaled(1,16,44,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("A cocher si vous ne souhaitez pas saisir les nom des clients qui réglent par carte.")
+      Text = ("Choix saisie nom des cartes")
+    }
+    { Portb ComboBox
+      MoveScaled(68,17,22,3)
+      Font = Font["Serif,-1"]
+      List = [("/dev/ttyS1"), ("/dev/ttyS2"), ("/dev/ttyS3"), ("/dev/ttyS4"), ("/dev/ttyS5"), ("/dev/ttyS6")]
+    }
+    { Label4 Label
+      MoveScaled(49,17,19,3)
+      Font = Font["Serif,-1"]
+      Text = ("Port balance")
+    }
+    { TypeB ComboBox
+      MoveScaled(54,13,36,3.1429)
+      List = [("Tropper"), ("Mettler Toledo")]
+    }
+    { ChoixImp2 CheckBox
+      MoveScaled(1,28,44,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("Si actif ==> imprimante par défaut sinon ==> imprimante ticket")
+      Text = ("Facturette sur imprimante par défaut")
+      Value = CheckBox.True
+    }
+    { Tircarte CheckBox
+      MoveScaled(1,24,47,3)
+      Font = Font["Serif,-1"]
+      Text = ("Le tiroir ne s'ouvre pas pour les paiements  cartes")
+    }
+    { Rappel CheckBox
+      MoveScaled(1,32,44,3)
+      Font = Font["Serif,-1"]
+      Text = ("Rappel automatique touche précédente")
+    }
+    { Raccourcis CheckBox
+      MoveScaled(1,36,45,4)
+      Font = Font["Serif,-1"]
+      ToolTip = ("Activez ce bouton pour masquer les raccourcis clavier du menu.")
+      Text = Shortcut(("Masquage des raccourcis clavier sur le menu"), "M")
+    }
+    Index = 1
+    Text = ("Sauvegarde base de données")
+    { Svs Button
+      MoveScaled(55,9,11,3)
+      Font = Font["Serif,-1"]
+      Text = Shortcut(("Choisir"), "C")
+    }
+    { Sauves TextBox
+      MoveScaled(26,9,28,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("Chemin de copie du fichier Caisse.sql généré par le programme de sauvegarde de la base.\nImportant : Ne jamais sauvegarder sur le repertoire LX.pos.")
+    }
+    { Label3 Label
+      MoveScaled(0,5,93,3)
+      Font = Font["Serif,-1"]
+      Text = ("Support de sauvegarde.")
+      Alignment = Align.Center
+    }
+    { Label2 Label
+      MoveScaled(0,28,93,3)
+      Font = Font["Serif,-1"]
+      Text = ("Chemin de l'historique des tickets")
+      Alignment = Align.Center
+    }
+    { Sauves2 TextBox
+      MoveScaled(27,32,28,3)
+      Font = Font["Serif,-1"]
+      ToolTip = ("Chemin de copie du fichier Caisse.sql généré par le programme de sauvegarde de la base.\nImportant : Ne jamais sauvegarder sur le repertoire LX.pos.")
+    }
+    { Svs2 Button
+      MoveScaled(56,32,11,3)
+      Font = Font["Serif,-1"]
+      Text = Shortcut(("Choisir"), "C")
+    }
+    { Label5 Label
+      MoveScaled(0,15,93,3)
+      Font = Font["Serif,-1"]
+      Text = ("NB : La sauvegarde se fait automatiquement à la fermeture de la caisse")
+      Alignment = Align.Center
+    }
+    { Separator1 Separator
+      MoveScaled(1,22,92,1)
+    }
+    { Label7 Label
+      MoveScaled(0,38,93,3)
+      Font = Font["Serif,-1"]
+      Text = ("NB : L'historiques des tickets se fera dans ce dossier à l'impression de la bande Z")
+      Alignment = Align.Center
+    }
+    Index = 2
+    Text = ("Logo et police")
+    { Frame12 Frame
+      MoveScaled(1,4,42,40)
+      Font = Font["Serif,-1"]
+      Text = ("Logo")
+      { Logo CheckBox
+        MoveScaled(1,3,40,3)
+        ToolTip = ("Si ce bouton est actif alors votre logo s'imprimera sur les facturettes et sur les tickets imprimés à partir de l'imprimante par défaut.")
+        Text = Shortcut(("Impression du logo sur les factures"), "I")
+      }
+      { Panlogo Panel
+        MoveScaled(1,7,40.1429,10)
+        Visible = False
+        Border = Border.Plain
+        { Logo2 TextBox
+          MoveScaled(1,5,28,3.4286)
+        }
+        { Lgo2 Button
+          MoveScaled(29,5,10,3.4286)
+          Text = Shortcut(("Choisir"), "C")
+        }
+        { Label14 Label
+          MoveScaled(0.4286,1,32,3)
+          Text = ("Nom et chemin du logo")
+          Alignment = Align.Center
+        }
+      }
+      { dwgImage DrawingArea
+        MoveScaled(12,18,21,21)
+        Enabled = False
+        Border = Border.Etched
+      }
+    }
+    { Frame5 Frame
+      MoveScaled(47,4,43,40)
+      Font = Font["Serif,-1"]
+      Text = ("Police de LX.pos")
+      { FontChooser1 FontChooser
+        MoveScaled(1,5,41,31)
+        ShowStyle = False
+      }
+    }
+    Index = 0
+  }
+  { Button2 Button
+    MoveScaled(3,94,25,5)
+    ToolTip = ("Lance la mise à jour de LX.Pos")
+    Text = Shortcut(("Mise à jour LX-pos"), "M")
+    Picture = Picture["icon:/22/make"]
+  }
+  { Button1 Button
+    MoveScaled(72,94,19,5)
+    Text = Shortcut(("Quitter"), "Q")
+    Picture = Picture["Icones/exit.png"]
+  }
+  { Button3 Button
+    MoveScaled(38,94,25,5)
+    ToolTip = ("Lance la mise à jour de PX.Pos")
+    Text = Shortcut(("Restauration base"), "R")
+    Picture = Picture["icon:/22/server"]
+  }
+}

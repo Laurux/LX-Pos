@@ -1,0 +1,129 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(29,40,57,89)
+  Background = &HEBD0C2&
+  Drop = True
+  Text = ("Création de la base.")
+  { Create Label
+    MoveScaled(-1,1,58,11)
+    Font = Font["Serif,Bold,+2"]
+    Foreground = &HAA0000&
+    Text = ("Configuration accès MySQL\n----------\n")
+    Alignment = Align.Center
+  }
+  { Button1 Button
+    MoveScaled(16,85,10,3.4286)
+    Font = Font["Serif,-1,Bold"]
+    Text = ("&Valider")
+  }
+  { Button2 Button
+    MoveScaled(29,85,10,3.4286)
+    Font = Font["Serif,-1,Bold"]
+    Text = ("&Quitter")
+  }
+  { Frame1 Frame
+    MoveScaled(8,52,40,31)
+    Enabled = False
+    Text = ("Infos tunnel SSH")
+    { Label5 Label
+      MoveScaled(4,4,30,2)
+      Font = Font["Serif,-1"]
+      Text = ("Nom d'utilisateur connexion ssh")
+    }
+    { Loginssh TextBox
+      MoveScaled(4,6,34,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+    }
+    { Label8 Label
+      MoveScaled(4,24,28,2)
+      Font = Font["Serif,-1"]
+      Text = ("Port Socket connexion locale")
+    }
+    { Portlocal SpinBox
+      MoveScaled(4,26,10,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+      MinValue = 1025
+      MaxValue = 65535
+      Value = 13306
+    }
+    { Portssh SpinBox
+      MoveScaled(4,19,10,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+      MinValue = 1
+      MaxValue = 65535
+      Value = 22
+    }
+    { Label11 Label
+      MoveScaled(4,17,31,2)
+      Font = Font["Serif,-1"]
+      Text = ("Port SSH ouvert sur serveur distant")
+    }
+    { Label7 Label
+      MoveScaled(4,10,30,3)
+      Font = Font["Serif,-1"]
+      Text = ("Adresse tunnel")
+    }
+    { Hostssh TextBox
+      MoveScaled(4,13,34,3)
+      Font = Font["Serif,-1"]
+      Background = &HF0F1C7&
+    }
+  }
+  { Frame2 Frame
+    MoveScaled(12,13,32,33)
+    Text = ("Infos connexion MySQL")
+    { Label1 Label
+      MoveScaled(2,4,25,2)
+      Font = Font["Serif,-1"]
+      Text = ("Nom d'utilisateur MySQL")
+    }
+    { Login TextBox
+      MoveScaled(2,6,27,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+    }
+    { Label2 Label
+      MoveScaled(2,10,23,2)
+      Font = Font["Serif,-1"]
+      Text = ("Mot de passe MySQL")
+    }
+    { Password TextBox
+      MoveScaled(2,12,27,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+      Password = True
+    }
+    { Label3 Label
+      MoveScaled(2,16,28,2)
+      Font = Font["Serif,-1"]
+      Text = ("Serveur MySQL (Nom ou IP)")
+    }
+    { Host TextBox
+      MoveScaled(2,18,27,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+      Text = ("localhost")
+    }
+    { Label4 Label
+      MoveScaled(2,23,27,2)
+      Font = Font["Serif,-1"]
+      Text = ("Port socket connexion MySQL")
+    }
+    { Port SpinBox
+      MoveScaled(2,26,10,3.4286)
+      Font = Font["Serif"]
+      Background = &HF0F1C7&
+      MinValue = 1025
+      MaxValue = 65535
+      Value = 3306
+    }
+  }
+  { Bssh CheckBox
+    MoveScaled(14,48,30,3)
+    Text = ("Connexion  MySQL par SSH")
+  }
+}

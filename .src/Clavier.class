@@ -1,0 +1,128 @@
+' Gambas class file
+
+Private $org As String
+Private $saisie As String
+
+Public Sub _new(Org As String)
+  
+  $Org = Org
+  Me.center
+  Me.Move(120, 280)
+  
+End
+
+Public Sub Clav_click()
+  
+  If $Org = "Ouverture" Then 
+    alpha()
+    Ouverture.Mdp.text = $saisie
+  Endif
+  
+  If $Org = "Carticle" Then
+    alpha()
+    TriArticles.CO.Text = $saisie  
+    TriArticles.ClavInput()
+  Endif
+  
+  If $Org = "Cintitule" Then
+    alpha()
+    TriArticles.IT.Text = $saisie  
+    TriArticles.ClavInput2()
+  Endif
+  
+  If $Org = "Clients" Then
+    alpha()
+    Triclients.C1.Text = $saisie  
+    Triclients.ClavInput()
+  Endif
+  If $Org = "Dclients" Then
+    alpha()
+    Triclients.N1.Text = $saisie  
+    Triclients.ClavInput2()
+  Endif
+  If $Org = "ClientsDiv" Then
+    alpha()
+    TriclientsD.N1.Text = $saisie  
+    TriclientsD.ClavInput()
+  Endif
+  
+End
+
+Public Sub Numerique()
+  
+  If Len(Last.name) = 2 Then
+    $saisie = $saisie & Right$(Last.name, 1)
+  Else
+    If Last.name = "Point" Then 
+      $saisie = $saisie & "."
+    Else
+      If Last.name = "Efface" Then 
+        $saisie = Left$($saisie, Len($saisie) - 1)
+      Endif
+    Endif
+  Endif
+  
+End
+
+Public Sub Alpha()
+  
+  If Len(Last.name) = 1 Then 
+    $saisie = $saisie & Last.name
+  Else
+    If Len(Last.name) = 2 Then
+      $saisie = $saisie & Right$(Last.name, 1)
+    Else
+      If Last.name = "Point" Then 
+        $saisie = $saisie & "."
+      Else
+        If Last.name = "Etoile" Then 
+          $saisie = $saisie & "*"
+        Else
+          If Last.name = "Espace" Then
+            $saisie = $saisie & " "
+          Else
+            If Last.name = "Efface" Then 
+              $saisie = Left$($saisie, Len($saisie) - 1)
+            Else
+              If Last.name = "Entree" Then 
+                $saisie = $saisie & Chr$(13) & Chr$(10) 
+              Endif
+            Endif
+          Endif
+        Endif
+      Endif
+    Endif
+  Endif
+  
+End
+
+Public Sub Fermer_Click()
+  
+  If $Org = "Ouverture" Then 
+    Ouverture.Mdp.SetFocus
+    Me.close
+    Ouverture.Button1_Click()
+  Endif 
+  If $Org = "Carticle" Then 
+    TriArticles.Colart.SetFocus
+    Me.close
+  Endif 
+  If $Org = "Cintitule" Then 
+    TriArticles.Colart.SetFocus
+    Me.close
+  Endif
+  If $Org = "Clients" Then 
+    Triclients.Colcli.SetFocus
+    Me.close
+  Endif
+  If $Org = "Dclients" Then 
+    Triclients.Colcli.SetFocus
+    Me.close
+  Endif
+  If $Org = "ClientsDiv" Then 
+    TriclientsD.Colcli.SetFocus
+    Me.close
+  Endif
+  
+End
+' 

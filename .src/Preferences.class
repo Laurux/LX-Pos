@@ -1,0 +1,266 @@
+' Gambas class file
+
+Private Fontes As String
+Private chkNbase As Boolean = False
+Private Lig As String
+Private Intitule As String
+Private cs As String
+Private cv As String
+Private hImage As Image
+
+Public Sub _new()
+  
+  Try Logo.value = Settings["/logo"]
+  If Logo.Value Then
+    Panlogo.Visible = True
+    Try Logo2.text = Settings["/ilogo"]
+    aff_logo()
+  Endif
+  Try admin.value = Settings["/admin"]
+  If admin.value Then
+    Mdp2.Text = hexdblKey.crypt("de", Settings["/MdpPrefs"], "LXpos")
+    Mdp2.Visible = True
+  Endif
+  Try admin2.value = Settings["/admin2"]
+  Try Qt1.value = Settings["/qt1"]
+  Try Ordre.Text = Settings["/ordre"]
+  Try Lieu.Text = Settings["/lieu"]
+  Try Fontes = Settings["/Soc" & Start.Soc & "/Font"]
+  Try cs = Settings["/Soc"]
+  Try Intitule = Settings["/intitule"]
+  Try son.Value = Settings["/son"]
+  Try Balance.Value = Settings["/balance"]
+  If Balance.value Then 
+    TypeB.Visible = True
+    TypeB.text = Settings["/Tbalance"]
+  Endif
+  Try Portb.Text = Settings["/portb"]
+  Try TypeB.text = Settings["/Tbalance"]
+  Settings["/portb"] = Portb.Text
+  Try ChoixImp.Value = Settings["/choiximp"]
+  Try ChoixImp2.Value = Settings["/choiximp2"]
+  Try ChoixImpn.Value = Settings["/choiximpn"]
+  Try ChoixImpc.Value = Settings["/choiximpc"]
+  Try HistoCli.Value = Settings["/histocli"]
+  Try Tircarte.Value = Settings["/tircarte"]
+  Try Raccourcis.Value = Settings["/raccourcis"]
+  Try Rappel.Value = Settings["/rappel"] 
+  Try Nbf.Text = Settings["/nbf"]
+  Try Sauves.Text = Settings["/Rep_Sauv"]
+  Try Sauves2.Text = Settings["/Rep_Sauv2"]
+  If IsNull(Nbf.text) Then Nbf.Text = "1"
+  If IsNull(fontes) Then
+    FontChooser1.SelectedFont = "Serif,9"
+  Else
+    FontChooser1.SelectedFont = Fontes
+  Endif
+  'Init_Nbase()
+  Nbase.text = "Caisse"
+  
+End
+
+Public Sub Init_Nbase()
+  
+  Dim elements As Variant
+  
+  Nbase.Clear
+  For Each elements In Utils.db.Databases
+    Lig = elements.name
+    If lig = "Caisse" Then Nbase.Add(Lig)
+  Next
+  
+End
+
+Public Sub Button1_Click()
+  
+  Me.close
+  
+End
+
+Public Sub Logo_Click()
+  
+  If Logo.Value Then
+    Panlogo.Visible = True
+  Else
+    Panlogo.Visible = False
+  Endif
+  
+End
+
+Public Sub Lgo2_Click()
+  
+  Dialog.Filter = FileFilter(True)
+  Dialog.Path = User.home
+  Dialog.Title = "Sélection du logo"
+  If Dialog.OpenFile() Then Return
+  Logo2.Text = Dialog.Path
+  aff_logo()
+Catch
+  Message.Warning(ERROR.Text)
+  
+End
+
+Private Function FileFilter(Optional All As Boolean = False) As String[]
+  
+  Dim filter As New String[]
+  
+  filter.Add("*.png")
+  filter.Add("Portable Network Graphics")
+  filter.Add("*.jpeg *.jpg")
+  filter.Add("Joint Photographic Experts Group")
+  Return filter
+  
+End
+
+Public Sub aff_logo()
+  
+  Dim iFormat As Single
+  
+  Try hImage = Image.Load(Logo2.Text)
+  iFormat = dwgImage.Width / dwgImage.Height
+  dwgImage.Width = dwgImage.Width * iFormat
+  If dwgImage.Width > Frame12.Width Then
+    dwgImage.Width = Frame12.Width
+    dwgImage.Height = Frame12.Width / iFormat
+  Endif
+  dwgImage.X = (Frame12.Width - dwgImage.Width) / 2
+  
+End
+
+Public Sub dwgImage_Draw()
+  
+  Try Draw.Image(hImage, 0, 0, dwgImage.Width, dwgImage.Height)
+  
+End
+
+Public Sub Form_Close()
+  
+  Dim $mdp As String
+  
+  $mdp = hexdblKey.crypt("en", Mdp2.text, "LXpos")
+  Settings["/MdpPrefs"] = $mdp
+  Settings["/logo"] = logo.Value
+  Settings["/admin"] = admin.Value
+  Settings["/admin2"] = admin2.Value
+  Settings["/qt1"] = Qt1.value
+  Settings["/ilogo"] = Logo2.Text
+  Settings["/ordre"] = Ordre.Text
+  Settings["/lieu"] = Lieu.Text
+  Settings["/Soc" & Start.Soc & "/Font"] = FontChooser1.SelectedFont
+  Settings["/Soc"] = cs
+  Settings["/intitule"] = Intitule
+  Settings["/son"] = son.Value
+  Settings["/balance"] = Balance.Value
+  Settings["/portb"] = Portb.Text
+  Settings["/choiximp"] = ChoixImp.Value
+  Settings["/choiximp2"] = ChoixImp2.Value
+  Settings["/choiximpn"] = ChoixImpn.Value
+  Settings["/choiximpc"] = ChoixImpc.Value
+  Settings["/histocli"] = HistoCli.Value
+  Settings["/nbf"] = Nbf.Text
+  Settings["/Rep_Sauv"] = Sauves.Text
+  Settings["/Rep_Sauv2"] = Sauves2.Text
+  Settings["/tircarte"] = Tircarte.Value
+  Settings["/rappel"] = Rappel.Value 
+  Settings["/raccourcis"] = Raccourcis.Value 
+  Settings.Save
+  
+End
+
+Public Sub Nbase_MouseDown()
+  
+  ChkNbase = True
+  
+End
+
+Public Sub Nbase_KeyPress()
+  
+  ChkNbase = False
+  If Key.Code = Key.Return Or If Key.Code = Key.Enter Or If Key.Code = Key.Tab Then 
+    ChkNbase = True
+    Nbase_Change()
+  Endif
+  
+End
+
+Public Sub Nbase_Change()
+  
+  Dim Tab As String
+  Dim rResult As Result
+  
+  If chkNbase = True Then
+    Utils.db.Close
+    Utils.db.name = Nbase.Text
+    Utils.db.Open
+    Utils.db.exec("SET NAMES 'latin1'")
+    cs = Right$(Nbase.text, Len(Nbase.text) - 6)
+    Settings["/Soc"] = cs
+    'Settings["/intitule"] = intitule.Text
+    Settings["/dbase/Name"] = "Caisse"
+    Settings.Save
+    Settings.Reload
+    Start.Soc = cs
+    
+    Tab = "Fiches_Societes"
+    If Not IsNull(cs) Then
+      rResult = Utils.db.Exec("SELECT * FROM " & Tab & " where cd_sc = &1", Cs)
+      If rResult.Available Then
+        Cv = rResult!type_sc
+        intitule = rResult!int_sc
+      Endif
+      message.Warning(" Vous venez de sélectionner la société " & cs & " " & cv & " " & intitule & " ! \n Celle-ci sera donc votre société de travail par défaut..")
+    Endif
+    
+    chkNbase = False
+    Fmenu.text = "LX.pos : " & "Société " & cs & " " & cv & " " & intitule
+  Endif
+  
+End
+
+Public Sub Admin_Click()
+  
+  If admin.value Then
+    mdp2.visible = True
+    mdp2.SetFocus
+    mdp2.Select
+  Else
+    mdp2.visible = False
+  Endif
+  
+End
+
+Public Sub Button2_Click()
+  
+  LXMaj.Verif_Version()
+  
+End
+
+Public Sub Svs_Click()
+  
+  Dialog.Title = "Choisir un repertoire"
+  Dialog.Path = User.Home
+  If Not Dialog.SelectDirectory() Then
+    Sauves.Text = Dialog.Path
+  Else
+    Sauves.Text = User.Home
+  Endif
+  
+End
+
+Public Sub Svs2_Click()
+  
+  Dialog.Title = "Choisir un repertoire"
+  Dialog.Path = User.Home
+  If Not Dialog.SelectDirectory() Then
+    Sauves2.Text = Dialog.Path
+  Else
+    Sauves2.Text = User.Home
+  Endif
+  
+End
+
+Public Sub Button3_Click()
+  
+  FRestore.ShowModal()
+  
+End

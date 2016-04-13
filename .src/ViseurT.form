@@ -1,0 +1,15 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,81,33)
+  Background = &H000000&
+  Stacking = Window.Above
+  { !LigT Label
+    MoveScaled(0,8,81,11)
+    #Public = True
+    Font = Font["Sans Serif,+10"]
+    Background = &H000000&
+    Foreground = &H53DF53&
+    Alignment = Align.Center
+  }
+}

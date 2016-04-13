@@ -1,0 +1,23 @@
+' Gambas module file
+
+Public Sub Sauvegarde()
+  
+  Dim cp As New Compress
+  Dim SauveRep As String = Settings["/Rep_Sauv"]
+  
+  If IsNull(SauveRep) Then
+    Message.Warning("Aucun chemin n'est défini dans les préférences ! Sauvegarde impossible.")
+  Else
+    cp.type = "zlib"
+    If Not Exist(SauveRep) Then Try Mkdir SauveRep
+    If Exist(SauveRep & "/Caisse" & ".sql") Then Kill SauveRep & "/Caisse" & ".sql"
+    Shell "mysqldump -h " & Settings["/dbase/Host"] & " " & " -u " & Utils.db.Login & " -p" & Utils.db.Password & " " & "Caisse" & " " & "--add-drop-table" & " " & ">" & " " & SauveRep & "/Caisse" & ".sql" Wait
+    Try cp.File(SauveRep & "/Caisse" & ".sql", SauveRep & "/Caisse" & WeekDay(Now) & ".sql.gz", cp.Max)
+    If Error Then 
+      Message.Warning("Problème lors de la sauvegarde !")
+    Else
+      Message.Warning("Sauvegarde terminée !\nAu revoir")
+    Endif
+  Endif
+  
+End

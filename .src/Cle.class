@@ -1,0 +1,27 @@
+' Gambas class file
+
+Private serie As String
+
+Public Sub _new()
+  
+  Me.Center
+  Shell "sudo hdparm -i /dev/sda | grep SerialNo | cut -d '=' -f4 " To serie
+  Wait 0.1
+  'If Exist(User.home & "/tmp/serie.txt") Then serie = Trim$(File.Load(User.home & "/tmp/serie.txt"))
+  TextLabel1.text = "Numero : " & serie
+  
+End
+
+Public Sub Button1_Click()
+  
+  Settings["/serie"] = Clef.text
+  Settings.save
+  
+End
+
+Public Sub Button2_Click()
+  
+  Me.close
+  Quit
+  
+End
