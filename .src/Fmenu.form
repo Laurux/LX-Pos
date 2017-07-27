@@ -20,7 +20,7 @@
     }
     { Frame1 Frame
       MoveScaled(1,0,42,49)
-      Text = ("Caisse LX-Pos V1.4")
+      Text = ("Caisse LX-Pos V1.4.8")
       { VBox2 VBox
         MoveScaled(7,12,27,23)
         Spacing = True
@@ -28,6 +28,11 @@
           MoveScaled(1,1,25,6)
           Text = Shortcut(("Saisie fond de caisse"), "f")
           Picture = Picture["Icones/especes.png"]
+        }
+        { Button11 Button
+          MoveScaled(1,8,25,6)
+          Text = Shortcut(("Saisie caisse"), "S")
+          Picture = Picture["Icones/caisse.png"]
         }
         { Frame8 Frame
           MoveScaled(0,6,26,11)
@@ -39,11 +44,6 @@
             Alignment = Align.Center
             Password = True
           }
-        }
-        { Button11 Button
-          MoveScaled(1,8,25,6)
-          Text = Shortcut(("Saisie caisse"), "S")
-          Picture = Picture["Icones/caisse.png"]
         }
         { Button2 Button
           MoveScaled(1,15,25,6)
@@ -61,17 +61,17 @@
         Alignment = Align.BottomNormal
       }
       { Label3 Label
-        MoveScaled(3,43.1429,22,3)
+        MoveScaled(3,43.125,22,3)
         Font = Font["-4"]
         Text = ("CTRL + F4 = Paramétrage touches")
       }
       { Label4 Label
-        MoveScaled(3,37.7143,20,3)
+        MoveScaled(3,37.75,20,3)
         Font = Font["-4"]
         Text = ("CTRL + F2 = Données société")
       }
       { !Label2 Label
-        MoveScaled(3,40.4286,19,3)
+        MoveScaled(3,40.375,19,3)
         #Public = True
         Font = Font["-4"]
         Text = ("CTRL + F3 = Préfèrences")

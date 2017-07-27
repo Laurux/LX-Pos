@@ -23,10 +23,10 @@ Public iPos As Integer
 Public rResult As Result
 
 Public Sub _new()
-  
+
   Dim Frmt As String[]
   Dim ssh As String
-  
+
   Frmt = Utils.FColr(Settings["/Coul/Fnets"])
   If Settings["/Soc" & Start.Soc & "/Coul_fen"] = 0 Then Me.Background = Val(Frmt[0])
   Utils.Observers(LXConf)
@@ -37,7 +37,7 @@ Public Sub _new()
     Bssh.value = True
     Bssh_Click()
   Endif
-  
+
 End
 
 '***********************************************************
@@ -47,9 +47,9 @@ End
 '* MG - 07 janvier 2010
 '***********************************************************
 Public Sub Button1_Click()
-  
+
   Dim $ready_connect As Boolean
-  
+
   $ready_connect = True
   Soc = "01"
   intitule = "  "
@@ -67,7 +67,7 @@ Public Sub Button1_Click()
   Settings["/Tips"] = 1
   Settings["/tactile"] = 0
   Settings.Save
-  
+
   '# -- valeurs de connexion
   hcon.type = Settings["/dbase/type"]
   ' le nom est celui de la base
@@ -80,7 +80,7 @@ Public Sub Button1_Click()
   hcon.Host = Settings["/dbase/Host"]
   ' le port le port MySQL du serveur
   hcon.Port = Settings["/dbase/Port"]
-  
+
   Soc = Settings["/Soc"]
   Try hcon.Close
   hcon.Open
@@ -110,33 +110,33 @@ Catch
       Endif
     Endif
   Endif
-  
+
 End
 
 Public Sub createbase()
-  
+
   Dim hcon As New Connection
-  
+
   If message.Question("Le programme va créer la base Caisse", "Oui", "Non") = 1 Then
     Me.mouse = Mouse.wait
     Try Utils.db.Close
-    
+
     hcon.type = "mysql"
-    hcon.Name = "Caisse"
+    hcon.Name = ""
     hcon.Login = Login.Text
     hcon.Password = Password.Text
     hcon.Host = Host.Text
     hcon.Port = Port.Text
     Try hcon.open
     If Error Then Print Error.Text
-    Try hcon.Databases.Add(Caisse)
+    Try hcon.Databases.Add("Caisse")
     Try hcon.Close
     Settings["/Soc"] = "01"
     Settings["/intitule"] = "Caisse"
     If IsNull(Settings["/dbase/Host"]) Then
       Shell "mysql -u " & Utils.db.login & " -p" & Utils.db.Password & " " & "Caisse  < ~/LX.pos/Caisse.sql" Wait
     Else
-      Shell "mysql -h " & Settings["/dbase/Host"] & " -u " & Utils.db.login & " -p" & Utils.db.Password & " " & "Caisse  < ~/LX.pos∕Caisse.sql" Wait
+      Shell "mysql -h " & Settings["/dbase/Host"] & " -u " & Utils.db.login & " -p" & Utils.db.Password & " " & "Caisse  < ~/LX.pos/Caisse.sql" Wait
     Endif
     Settings.Reload
     Try Start.societe = soc
@@ -144,14 +144,14 @@ Public Sub createbase()
     Message.Info("LX.pos est installé et la base de démarrage a été restaurée !\nVous pouvez maintenant travailler avec LX.pos.")
     Me.close
   Endif
-  
+
 End
 
 Public Sub Button2_Click()
-  
+
   Try Kill User.home & "/Caisse.lock"
   Me.close
-  
+
 End
 
 '********************************************************************
@@ -159,10 +159,10 @@ End
 '* MG - 07 janvier 2010
 '********************************************************************
 Public Sub Form_Close()
-  
+
   Utils.fermeTunnel()
   Print Now & " - " & "Fermeture de la fenêtre\n"
-  
+
 End
 
 '******************************************
@@ -170,11 +170,11 @@ End
 '* MG - 07 janvier 2010
 '******************************************
 Public Sub Bssh_Click()
-  
+
   If Bssh.value Then
     Frame1.Enabled = True
   Else
     Frame1.Enabled = False
   Endif
-  
+
 End
