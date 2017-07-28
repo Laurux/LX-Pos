@@ -3,7 +3,7 @@
 Title=LX-Pos
 Startup=Start
 Icon=Icones/caisse3.png
-Version=1.4.8
+Version=1.4.10
 Component=gb.image
 Component=gb.qt4
 Component=gb.form

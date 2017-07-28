@@ -20,7 +20,6 @@
     }
     { Frame1 Frame
       MoveScaled(1,0,42,49)
-      Text = ("Caisse LX-Pos V1.4.8")
       { VBox2 VBox
         MoveScaled(7,12,27,23)
         Spacing = True
